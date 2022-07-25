@@ -1,1 +1,1 @@
-1. Swap event emit here: https://github.com/Uniswap/v3-core/blob/412d9b236a1e75a98568d49b1aeb21e3a1430544/contracts/UniswapV3Pool.sol#L786
+1. Swap event emit here: https://github.com/Uniswap/v3-core/blob/412d9b236a1e75a98568d49b1aeb21e3a1430544/contracts/interfaces/pool/IUniswapV3PoolEvents.sol#L72
