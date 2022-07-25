@@ -1,23 +1,21 @@
-# Large Tether Transfer Agent
+# Uniswap swaps Forta agent
 
 ## Description
 
-This agent detects transactions with large Tether transfers
+This agent detects any swaps made with Uniswap V3.
 
 ## Supported Chains
 
-- Ethereum
-- List any other chains this agent can support e.g. BSC
+- Ethereum Mainnet (chainId: 1)
 
 ## Alerts
 
 Describe each of the type of alerts fired by this agent
 
-- FORTA-1
-  - Fired when a transaction contains a Tether transfer over 10,000 USDT
+- UNIS-1
+  - Fired when a swap occurs on Uniswap V3 
   - Severity is always set to "low" (mention any conditions where it could be something else)
   - Type is always set to "info" (mention any conditions where it could be something else)
-  - Mention any other type of metadata fields included with this alert
 
 ## Test Data
 
