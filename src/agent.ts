@@ -37,7 +37,7 @@ const handleTransaction: HandleTransaction = async (
     if(temp.toLowerCase() == poolAddress.toLowerCase()){
       findings.push(
         Finding.fromObject({
-          name: "Swap on Uniswap V3: ${}",
+          name: "Swap on Uniswap V3",
           description: `A Uniswap V3 swapjust took place.`,
           alertId: "UNIS-1",
           severity: FindingSeverity.Low,
