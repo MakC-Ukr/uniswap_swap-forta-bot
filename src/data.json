@@ -249,9 +249,7 @@
    ],
    "PoolABI":[
       {
-         "inputs":[
-            
-         ],
+         "inputs":[],
          "name":"fee",
          "outputs":[
             {
