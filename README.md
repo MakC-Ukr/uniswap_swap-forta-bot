@@ -2,7 +2,10 @@
 
 ## Description
 
-This agent detects any swaps made with Uniswap V3.
+This agent detects any swaps made with Uniswap V3. It only detects swaps done by Pools deployed by Uniswap v3 Factory Contract (0x1F98431c8aD98523631AE4a59f267346ea31F984).
+
+## Deploying on other chains
+In order to deploy the agent on other chains, the RPC URL must be provided as `jsonRpcUrl` to `./forta.config.json` and the value of `chainId` must be corrected in `./package.json`. Along with that UniswapV3's factory contract address must be changed in data.json. 
 
 ## Supported Chains
 
