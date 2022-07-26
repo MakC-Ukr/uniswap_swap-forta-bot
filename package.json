@@ -2,6 +2,7 @@
   "name": "uniswap-challenge-2",
   "version": "0.0.1",
   "description": "Forta Agent Typescript starter project",
+  "repository": "https://github.com/MakC-Ukr/uniswap_swap-forta-bot",
   "chainIds": [
     1
   ],
