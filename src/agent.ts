@@ -7,23 +7,23 @@ import {
   getJsonRpcUrl,
 } from "forta-agent";
 var ethers = require("ethers");
-import dataJson from "./data.json";
+import {SWAP_EVENT, UNISWAP_V3_FACTORY_CONTRACT_ADDRESS, FACTORY_ABI, POOL_ABI} from "./constants"
 import LRU from "lru-cache";
 
 export function provideHandleTransaction(
-  SWAP_EVENT: string,
-  PoolABI: any[],
-  UniswapV3FactoryContractAddress: string,
-  FactoryABI: any[]
+  swapEventParam: string,
+  poolAbi: any[],
+  uniswapV3FactoryContractAddress: string,
+  factoryABI: any[]
 ): HandleTransaction {
   const cache: LRU<string, string[]> = new LRU<string, string[]>({ max: 10000 });
 
   let provider = new ethers.providers.JsonRpcProvider(getJsonRpcUrl());
-  let v3Factory = new ethers.Contract(UniswapV3FactoryContractAddress, FactoryABI, provider);
+  let v3Factory = new ethers.Contract(uniswapV3FactoryContractAddress, factoryABI, provider);
 
   return async (txEvent: TransactionEvent) => {
     const findings: Finding[] = [];
-    const swapEvents = txEvent.filterLog(SWAP_EVENT);
+    const swapEvents = txEvent.filterLog(swapEventParam);
 
     for (const swapEvent of swapEvents) {
       const poolAddress: string = swapEvent["address"];
@@ -35,7 +35,7 @@ export function provideHandleTransaction(
         token1 = poolData[1];
         fee = poolData[2];
       } else {
-        let poolContract = new ethers.Contract(poolAddress, PoolABI, provider);
+        let poolContract = new ethers.Contract(poolAddress, poolAbi, provider);
         [token0, token1, fee] = await Promise.all([poolContract.token0(), poolContract.token1(), poolContract.fee()]);
         let addToCache: string[] = [token0, token1, fee];
         cache.set(poolAddress, addToCache);
@@ -52,7 +52,13 @@ export function provideHandleTransaction(
             severity: FindingSeverity.Low,
             type: FindingType.Info,
             metadata: {
-              "network":txEvent.network.toString()
+              "sender": swapEvent.args.sender,
+              "recipient": swapEvent.args.recipient,
+              "amount0": swapEvent.args.amount0,
+              "amount1": swapEvent.args.amount1,
+              "sqrtPriceX96": swapEvent.args.sqrtPriceX96,
+              "liquidity": swapEvent.args.liquidity,
+              "tick": swapEvent.args.tick,
             },
           })
         );
@@ -65,9 +71,8 @@ export function provideHandleTransaction(
 
 export default {
   handleTransaction: provideHandleTransaction(
-    dataJson.SWAP_EVENT,
-    dataJson.PoolABI,
-    dataJson.UniswapV3FactoryContractAddress,
-    dataJson.FactoryABI
-  ),
+    SWAP_EVENT,
+    POOL_ABI, 
+    UNISWAP_V3_FACTORY_CONTRACT_ADDRESS, 
+    FACTORY_ABI),
 };
