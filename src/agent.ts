@@ -54,11 +54,11 @@ export function provideHandleTransaction(
             metadata: {
               "sender": swapEvent.args.sender,
               "recipient": swapEvent.args.recipient,
-              "amount0": swapEvent.args.amount0,
-              "amount1": swapEvent.args.amount1,
-              "sqrtPriceX96": swapEvent.args.sqrtPriceX96,
-              "liquidity": swapEvent.args.liquidity,
-              "tick": swapEvent.args.tick,
+              "amount0": swapEvent.args.amount0.toString(),
+              "amount1": swapEvent.args.amount1.toString(),
+              "sqrtPriceX96": swapEvent.args.sqrtPriceX96.toString(),
+              "liquidity": swapEvent.args.liquidity.toString(),
+              "tick": swapEvent.args.tick.toString()
             },
           })
         );

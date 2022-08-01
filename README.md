@@ -16,6 +16,14 @@ Describe each of the type of alerts fired by this bot
   - Fired when a swap occurs on Uniswap V3 
   - Severity is always set to "low" (mention any conditions where it could be something else)
   - Type is always set to "info" (mention any conditions where it could be something else)
+  - metadata description:
+    - `sender`- the sender of the swap
+    - `recipient`- the recipient of the swap
+    - `amount0`- change in amount of token0 in the pool
+    - `amount1`- change in amount of token1 in the pool
+    - `sqrtPriceX96`- the sqrtPriceX96(price) of the pool after the swap
+    - `liquidity`- the liquidity of the pool after the swap 
+    - `tick`- the LOG(base 1.0001) of the price of the pool
 
 ## Test Data
 
