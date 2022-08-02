@@ -39,6 +39,10 @@ export function provideHandleTransaction(
 
     for (const swapEvent of swapEvents) {
       const poolAddress: string = swapEvent["address"];
+      if(poolAddress.length == 0){
+        return findings
+      }
+
       let [token0, token1, fee]: string[] = [];
 
       if (cache.has(poolAddress)) {
@@ -48,9 +52,14 @@ export function provideHandleTransaction(
         fee = poolData[2];
       } else {
         let poolContract = new ethers.Contract(poolAddress, poolAbi, provider);
-        [token0, token1, fee] = await Promise.all([poolContract.token0(), poolContract.token1(), poolContract.fee()]);
-        let addToCache: string[] = [token0, token1, fee];
-        cache.set(poolAddress, addToCache);
+        try{
+          [token0, token1, fee] = await Promise.all([poolContract.token0(), poolContract.token1(), poolContract.fee()]);
+          let addToCache: string[] = [token0, token1, fee];
+          cache.set(poolAddress, addToCache);
+        }
+        catch(err){
+          return findings;
+        }
       }
 
       let temp: string = getPoolAddress(token0, token1, fee);
