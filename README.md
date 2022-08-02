@@ -2,20 +2,20 @@
 
 ## Description
 
-This bot detects any swaps made with Uniswap V3. It only detects swaps done by Pools deployed by Uniswap v3 Factory Contract (0x1F98431c8aD98523631AE4a59f267346ea31F984).
+This bot detects any swaps made with Uniswap V3. It only detects swaps done by Pools deployed by Uniswap v3 Factory Contract ([0x1F98431c8aD98523631AE4a59f267346ea31F984](https://etherscan.io/address/0x1F98431c8aD98523631AE4a59f267346ea31F984)).
 
 ## Supported Chains
 
-- Ethereum Mainnet (chainId: 1)
-
+- Ethereum Mainnet
 ## Alerts
 
 Describe each of the type of alerts fired by this bot
 
-- UNIS-1
-  - Fired when a swap occurs on Uniswap V3 
+- UNI-1
+  - Fired when a `Swap` event emission occurs on a valid UniswapV3 pool
   - Severity is always set to "low" (mention any conditions where it could be something else)
   - Type is always set to "info" (mention any conditions where it could be something else)
+  - `addresses` fielf in the alert returns the address of the pool that emits the `Swap` event
   - metadata description:
     - `sender`- the sender of the swap
     - `recipient`- the recipient of the swap
