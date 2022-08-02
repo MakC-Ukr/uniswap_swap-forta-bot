@@ -1,4 +1,4 @@
-import { FindingType, FindingSeverity, TransactionEvent, HandleTransaction, ethers, Finding } from "forta-agent";
+import { FindingType, FindingSeverity, TransactionEvent, HandleTransaction, Finding } from "forta-agent";
 import agent from "./agent";
 import {UNISWAP_V3_FACTORY_CONTRACT_ADDRESS, SWAP_EVENT, USDC_DAI_POOL} from './constants'
 import { createAddress, TestTransactionEvent } from "forta-agent-tools/lib/tests";

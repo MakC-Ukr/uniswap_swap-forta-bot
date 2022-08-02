@@ -4,9 +4,9 @@ import {
   TransactionEvent,
   FindingSeverity,
   FindingType,
+  ethers,
   getJsonRpcUrl,
 } from "forta-agent";
-var ethers = require("ethers");
 import {SWAP_EVENT, UNISWAP_V3_FACTORY_CONTRACT_ADDRESS, UNISWAP_POOL_CONTRACT_CREAT_CODE, FACTORY_ABI, POOL_ABI} from "./constants"
 import LRU from "lru-cache";
 
