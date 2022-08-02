@@ -69,7 +69,7 @@ describe("Testing basic functionanlity of swap detection bot", () => {
     }
     )
 
-    it("should not throw error if a swap originated from random address", async () => {
+    it("should return 0 findings and not throw an error if swap originates from random address ", async () => {
         const SENDER_ADDR = createAddress("0xd1");
         const REC_ADDR = createAddress("0xd1");
         const RANDOM_ADDR = createAddress("0x23");
